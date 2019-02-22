@@ -26,6 +26,10 @@ public class ArticleController {
 	public String article_class() {
 		return "html/article/article-class";
 	}
+	@RequestMapping("article-show")
+	public String article_show() {
+		return "html/article/article-show";
+	}
 	@RequestMapping("picture-list")
 	public String picture_list() {
 		return "html/picture/picture-list";

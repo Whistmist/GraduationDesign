@@ -36,7 +36,7 @@ public class SystemInitListener  implements ServletContextListener
     {
     	try {
     		CommonUtils.writeMessage(filename, "服务停止!");
-			CommonUtils.SendMail(filename,acceptEmail, sendEmail, mailHost, authorizationCode, theme, mailMessage);
+			//CommonUtils.SendMail(filename,acceptEmail, sendEmail, mailHost, authorizationCode, theme, mailMessage);
 		} catch (Exception e) {			
 			e.printStackTrace();
 			log.info("服务出错!");

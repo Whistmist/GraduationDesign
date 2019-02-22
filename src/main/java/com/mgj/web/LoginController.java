@@ -19,7 +19,7 @@ public class LoginController {
 	}
 	@RequestMapping("index")
 	public String index(HttpServletRequest req) {
-		String content = "用户在IP为【"+NetworkUtil.getIpAddress(req)+"】的电脑上登录小掌柜。登录时间为【"+DateUtil.getCurTime() + "】";
+		String content = "用户在IP为【"+NetworkUtil.getIpAddress(req)+"】的电脑上系统。登录时间为【"+DateUtil.getCurTime() + "】";
 		log.info(content);
 		return "html/index";
 	}
