@@ -35,4 +35,11 @@ public class SpiderController {
 		log.info(jsonResult);
 		return jsonResult;
 	}
+	
+	@RequestMapping("saveInformation")
+	@ResponseBody
+	public String saveInformation(@RequestBody String YD) throws UnsupportedEncodingException {
+		
+		return "";
+	}
 }
