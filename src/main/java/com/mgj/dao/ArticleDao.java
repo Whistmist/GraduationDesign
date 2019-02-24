@@ -1,5 +1,8 @@
 package com.mgj.dao;
 
-public class ArticleDao {
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+public interface ArticleDao {
 	
 }

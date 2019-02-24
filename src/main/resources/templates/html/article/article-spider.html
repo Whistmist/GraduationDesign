@@ -74,12 +74,11 @@
 				var md=(oldTime.getMonth()+1)+"/"+oldTime.getDate();
 				$.ajax({
 					type: 'POST',
-					url: 'http://localhost:8090' + '/todayInHistory',
+					url: 'http://localhost:8080' + '/todayInHistory',
 					dataType: 'json',
 					data:{"YD":time},
 					contentType: 'application/json',
 					success: function(result) {
-						//alert(result.data);
 						console.log(result.data);
 						var json =result.data;
 						$("tbody").html("");
@@ -104,7 +103,16 @@
 	});
 /* 新闻保存	 */
 function SaveInformation(){
-	$.ajax({
+	var artivleList = new Array();
+	var rows=$('tbody').rows;
+	for(var i = 0; i<rows.length; i++ ){
+		   for(var j = 0; j<rows[i].cells.length; j++ ){    // 遍历该行的 td
+		       alert("第"+(i+1)+"行，第"+(j+1)+"个td的值："+rows[i].cells[j].innerHTML+"。");  
+		       artivleList[i].eid=rows[i].cells[j].innerHTML
+		   }
+		}
+	alert(rows);
+	/* $.ajax({
 		type: 'POST',
 		url: 'http://localhost:8090' + '/saveInformation',
 		dataType: 'json',
@@ -129,7 +137,7 @@ function SaveInformation(){
 			})
 			$("tbody").append(html);
 		}
-	})
+	}) */
 }
 	
 $('.table-sort').dataTable({

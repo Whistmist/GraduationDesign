@@ -2,14 +2,20 @@ package com.mgj.web;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mgj.entity.Article;
+import com.mgj.service.ArticleService;
 import com.mgj.utils.RequestUrl;
+import com.mgj.utils.Result.BaseResponse;
+import com.mgj.utils.Result.ResultCode;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -19,6 +25,9 @@ public class SpiderController {
 	
 	@Value("${appid}")  
 	private String appid; 
+	
+	@Autowired
+	private ArticleService articleService;
 	
 	@RequestMapping("todayInHistory")
 	@ResponseBody
@@ -38,8 +47,8 @@ public class SpiderController {
 	
 	@RequestMapping("saveInformation")
 	@ResponseBody
-	public String saveInformation(@RequestBody String YD) throws UnsupportedEncodingException {
-		
-		return "";
+	public BaseResponse saveInformation(@RequestBody List<Article> articleList) throws UnsupportedEncodingException {
+		BaseResponse response=articleService.addArticle(articleList);
+		return response;
 	}
 }
