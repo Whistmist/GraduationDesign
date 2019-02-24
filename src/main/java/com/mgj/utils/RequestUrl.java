@@ -7,6 +7,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.zip.GZIPInputStream;
 
+import lombok.extern.slf4j.Slf4j;
+@Slf4j
 public class RequestUrl {
 	
 	/**
@@ -38,7 +40,7 @@ public class RequestUrl {
 			reader.close();
 			result = sbf.toString();
 		} catch (Exception e) {
-		e.printStackTrace();
+			log.error("历史上的今天爬虫失败:"+e.getMessage());
 		}
 		return result;
 	}
