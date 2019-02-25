@@ -118,26 +118,27 @@
 function SaveInformation(){
 	var artivleList = new Array();
 	var rows = $('tbody').find('tr');
-	var json = "[ ";
+	 var saveDataAry=[];
     for(var i=0; i< rows.length - 1; i++) {//最后一条是空白，不计入
     	 if(rows[i].cells[0].children[0].checked){
     		 var eid = rows[i].cells[1].innerHTML;
-    	     	var title = rows[i].cells[2].children[0].innerHTML;
-    	     	var img = rows[i].cells[3].innerHTML;
-    	     	var date = rows[i].cells[4].innerHTML;
-    	     	  json += '{ "eid" : "' + eid + '", "title" : "' + title + '", "img" : "' + img + '", "date" : "' + date + '"} , ';
+    	     var title = rows[i].cells[2].children[0].innerHTML;
+    	     var img = rows[i].cells[3].innerHTML;
+    	     var date = rows[i].cells[4].innerHTML;
+    	     console.log(img);
+    	     saveDataAry.push({ "eid" : eid , "title" : title , "img" : img , "date" : date});
          }
     } 
-    if(json == "[ "){
+    if(saveDataAry == null){
     	layer.msg('请选择要保存的新闻');
-    }else{
-    	json = json.substring(0, json.length - 2) + " ]";
-    	console.log(json);
+    }else{  	
+    	console.log(saveDataAry);
     	$.ajax({
 		type: 'POST',
 		url: 'http://localhost:8090' + '/saveInformation',
 		dataType: 'json',
-		data:{'articleList':json},
+		contentType:'application/json',
+		data:JSON.stringify(saveDataAry),
 		contentType: 'application/json',
 		success: function(result) {
 			layer.alert("success");

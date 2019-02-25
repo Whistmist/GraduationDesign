@@ -1,20 +1,16 @@
 package com.mgj.web;
 
-import java.io.UnsupportedEncodingException;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.alibaba.fastjson.JSONArray;
-import com.alibaba.fastjson.JSONObject;
 import com.mgj.entity.Article;
 import com.mgj.service.ArticleService;
-import com.mgj.utils.Result.BaseResponse;
 
 @Controller
 public class ArticleController {
@@ -23,7 +19,7 @@ public class ArticleController {
 	
 	@RequestMapping(value="saveInformation")
 	@ResponseBody
-	public String saveInformation(@RequestBody String articleList){
+	public String saveInformation(@RequestBody List<Article> atticles){
 		/*BaseResponse response=articleService.addArticle(articleList);*/
 		/*JSONArray jsonArray =JSONArray.parseArray(articleList);
 		List<Article> articleLists=null;
@@ -39,7 +35,7 @@ public class ArticleController {
 				articleLists.add(article); 
 			} 
 		} */
-		System.out.println(articleList);
+		System.out.println(atticles);
 		return "";
 	}
 }
