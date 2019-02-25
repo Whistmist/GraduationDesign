@@ -118,14 +118,13 @@
 function SaveInformation(){
 	var artivleList = new Array();
 	var rows = $('tbody').find('tr');
-	 var saveDataAry=[];
+	var saveDataAry=[];
     for(var i=0; i< rows.length - 1; i++) {//最后一条是空白，不计入
     	 if(rows[i].cells[0].children[0].checked){
     		 var eid = rows[i].cells[1].innerHTML;
     	     var title = rows[i].cells[2].children[0].innerHTML;
     	     var img = rows[i].cells[3].innerHTML;
     	     var date = rows[i].cells[4].innerHTML;
-    	     console.log(img);
     	     saveDataAry.push({ "eid" : eid , "title" : title , "img" : img , "date" : date});
          }
     } 
@@ -133,6 +132,7 @@ function SaveInformation(){
     	layer.msg('请选择要保存的新闻');
     }else{  	
     	console.log(saveDataAry);
+    	var layerIndex=-1;
     	$.ajax({
 		type: 'POST',
 		url: 'http://localhost:8090' + '/saveInformation',
@@ -140,9 +140,31 @@ function SaveInformation(){
 		contentType:'application/json',
 		data:JSON.stringify(saveDataAry),
 		contentType: 'application/json',
+		beforeSend: function () {
+			this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
+        },
 		success: function(result) {
-			layer.alert("success");
-		}
+			layer.close(this.layerIndex);
+			console.log(result);
+			if(result.code==200){
+				layer.alert('保存成功');
+			}else{
+				layer.alert('保存失败，请检查后重试', {
+		            skin: 'layui-layer-molv'
+		            , closeBtn: 0
+		            , shift: 2 //动画类型
+		            });
+			}
+			
+		},
+	    error: function () { //报错时执行
+	    	layer.close(this.layerIndex);
+            layer.alert('保存失败，请检查后重试', {
+            skin: 'layui-layer-molv'
+            , closeBtn: 0
+            , shift: 2 //动画类型
+            });
+        }
 	}) 
     }
     

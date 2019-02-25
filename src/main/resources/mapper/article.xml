@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.mgj.dao.ArticleDao" >
-	
+	<insert id="saveArticle" parameterType="list">
+		insert into article(eid,title,img,date) values
+		<foreach collection="list" item="item" separator=",">
+             (#{item.eid},#{item.title},#{item.img},#{item.date})
+        </foreach>
+	</insert>
 </mapper>

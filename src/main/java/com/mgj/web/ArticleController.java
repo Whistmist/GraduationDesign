@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mgj.entity.Article;
 import com.mgj.service.ArticleService;
+import com.mgj.utils.Result.BaseResponse;
 
 @Controller
 public class ArticleController {
@@ -19,23 +20,8 @@ public class ArticleController {
 	
 	@RequestMapping(value="saveInformation")
 	@ResponseBody
-	public String saveInformation(@RequestBody List<Article> atticles){
-		/*BaseResponse response=articleService.addArticle(articleList);*/
-		/*JSONArray jsonArray =JSONArray.parseArray(articleList);
-		List<Article> articleLists=null;
-		Article article =null;
-		for(int i =0; i < jsonArray.size(); i++){
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			if(jsonObject !=null) {
-				String eid = jsonObject.getString("eid");
-				String title = jsonObject.getString("title");
-				String img = jsonObject.getString("img");
-				String date = jsonObject.getString("date");// 封装Java对象 
-				article = new Article(eid, title, img, date);
-				articleLists.add(article); 
-			} 
-		} */
-		System.out.println(atticles);
-		return "";
+	public BaseResponse saveInformation(@RequestBody List<Article> articles){
+		return articleService.saveArticle(articles);
 	}
+
 }
