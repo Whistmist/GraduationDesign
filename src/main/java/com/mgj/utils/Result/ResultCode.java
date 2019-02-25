@@ -40,17 +40,19 @@ public enum ResultCode {
     /** 未设置方法 */
     NOT_METHOD(4004, "未设置方法");
 
-    private ResultCode(Integer code, String msg){
-        this.code = code;
-        this.code = code;
-    }
-    
-    public Integer getCode() {
+	private final Integer code;
+    private final String message;
+	
+	ResultCode(int code,String msg){
+		this.code = code;
+		this.message = msg;
+	}
+
+	public Integer getCode() {
 		return code;
 	}
-	public String getMsg() {
-		return msg;
+
+	public String getMessage() {
+		return message;
 	}
-	private Integer code;
-    private String msg;
 }

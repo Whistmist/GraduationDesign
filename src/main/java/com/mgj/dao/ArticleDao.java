@@ -10,5 +10,7 @@ import com.mgj.entity.Article;
 public interface ArticleDao {
 
 	int saveArticle(List<Article> articles);
+
+	List<String> queryArticleIds(List<String> ids);
 	
 }

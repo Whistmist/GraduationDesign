@@ -18,6 +18,7 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 	
+	
 	@RequestMapping(value="saveInformation")
 	@ResponseBody
 	public BaseResponse saveInformation(@RequestBody List<Article> articles){

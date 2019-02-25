@@ -12,6 +12,8 @@ public class BaseResponse {
 	private Integer code = 0; // 响应结构
 	private String message; // 响应消息
 
+	
+
 	public Integer getCode() {
 		return code;
 	}
@@ -30,7 +32,7 @@ public class BaseResponse {
 
 	public void setResultCode(ResultCode resultCode) {
 		this.code = resultCode.getCode();
-		this.message = resultCode.getMsg();
+		this.message = resultCode.getMessage();
 	}
 	
 	public ResultCode getResultCode() {

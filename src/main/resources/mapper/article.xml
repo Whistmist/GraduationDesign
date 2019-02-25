@@ -7,4 +7,10 @@
              (#{item.eid},#{item.title},#{item.img},#{item.date})
         </foreach>
 	</insert>
+	<select id="queryArticleIds" parameterType="list" resultType="string">
+		select eid from article where eid in
+		<foreach collection="list" item="item" open="(" close=");"  separator=",">
+             #{item}
+        </foreach>
+	</select>
 </mapper>
