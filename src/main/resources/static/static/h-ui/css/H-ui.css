@@ -86,7 +86,7 @@
     4.11 客服
     4.12 右侧悬浮工具
 		4.12.1 返回顶部
-		4.12.2 意见反馈
+		4.12.2 评论管理
     4.13 分享
     4.14 面板
     4.15 案例
@@ -3764,14 +3764,14 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus{color: #fff;text-deco
 		Explain:		返回顶部
 	*/
 	.tools-right.toTop{bottom:60px;display:none}
-	/*4.12.2 意见反馈
+	/*4.12.2 评论管理
 		Name:			mod_feedback
 		Level:			Global
-		Example:		<a href="javascript:;" class="tools-right feedback Hui-iconfont" title="意见反馈" onClick="feedback()">&#xe70c;</a>
-		Explain:		意见反馈
+		Example:		<a href="javascript:;" class="tools-right feedback Hui-iconfont" title="评论管理" onClick="feedback()">&#xe70c;</a>
+		Explain:		评论管理
 	<div id="modal-feedback" class="modal hide fade">
 		<div class="modal-header">
-			 <h3>意见反馈</h3>
+			 <h3>评论管理</h3>
 			 <a class="Hui-iconfont close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">&#xe6a6;</a>
 		</div>
 		<div class="modal-body">
@@ -4025,7 +4025,7 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus{color: #fff;text-deco
 	    <a href="#"><i class="avatar avatar-L radius"><img alt="" src="../static/h-ui/images/ucenter/avatar-default.jpg"></i></a>
 		<div class="comment-main">
 		  <header class="comment-header">
-		    <div class="comment-meta"><a class="comment-author" href="#">辉哥</a> 评论于 <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2014-8-31 15:20</time></div>
+		    <div class="comment-meta"><a class="comment-author" href="#">辉哥</a> 评论于 <time title="2014年8月31日 下午3:20" datetime="2014-08-31T03:54:20">2018.12.10</time></div>
 	      </header>
 		  <div class="comment-body"><p><a href="#">@某人</a> 你是猴子派来的救兵吗？</p></div></div>
 	  </li>

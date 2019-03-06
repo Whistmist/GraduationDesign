@@ -45,7 +45,7 @@ public class ValidateCodeController {
 			res.setDateHeader("Expires", 0);
 			res.setContentType("image/jpeg; charset=UTF-8");
 
-			int width = 80, height = 32;
+			int width = 80, height =  40;
 			BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 			os = res.getOutputStream();
 			Graphics g = image.getGraphics();

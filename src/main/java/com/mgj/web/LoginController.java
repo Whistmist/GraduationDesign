@@ -17,6 +17,10 @@ public class LoginController {
 	public String login() {
 		return "html/login";
 	}
+	@RequestMapping("login1")
+	public String login1() {
+		return "html/login1";
+	}
 	@RequestMapping("index")
 	public String index(HttpServletRequest req) {
 		String content = "用户在IP为【"+NetworkUtil.getIpAddress(req)+"】的电脑上系统。登录时间为【"+DateUtil.getCurTime() + "】";
@@ -26,5 +30,9 @@ public class LoginController {
 	@RequestMapping("welcome")
 	public String welcome() {
 		return "html/welcome";
+	}
+	@RequestMapping("reception")
+	public String reception() {
+		return "html/reception";
 	}
 }
