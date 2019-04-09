@@ -2,16 +2,50 @@ package com.mgj.web;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mgj.entity.User;
+import com.mgj.service.UserService;
+import com.mgj.utils.CommonObjResponse;
 import com.mgj.utils.DateUtil;
 import com.mgj.utils.NetworkUtil;
+import com.mgj.utils.Result.BaseResponse;
+import com.mgj.utils.Result.ResultCode;
 
+import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class LoginController {
+	@Autowired
+	UserService userService;
+	
+	@RequestMapping("gotoLogin")
+	@ResponseBody
+	public BaseResponse gotoLogin(@RequestBody User user) {
+		log.info(user.toString());
+		BaseResponse baseResponse=new BaseResponse();
+		int flag=0;
+		if(user!=null&&!user.equals("")) {
+			flag=userService.getUser(user);
+		}
+		if(flag>0) {
+			baseResponse.setResultCode(ResultCode.SUCCESS_IS_HAVE);
+		}
+		if(flag==0) {
+			baseResponse.setResultCode(ResultCode.NOT_DATA);
+		}
+		return baseResponse;
+		
+		
+		
+	}
+	
+	
 	
 	@RequestMapping("login")
 	public String login() {
