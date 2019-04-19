@@ -66,11 +66,13 @@
 		    	 if(data.code==208){
 		    		 window.location.href="index";
 		    	 }else{
+		    		 alert("登录错误!");
 		    		 window.location.href="login1";
 		    	 }
 		     },
 		     error:function(e){  
 	              console.log(e);  
+	              alert("登录错误!");
 	              window.location.href="login1";
 		     }  
 		 }); 
