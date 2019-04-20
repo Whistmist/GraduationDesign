@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 @Component
-public class RedisClient<T> {
+public class RedisClient {
 	@Autowired  
     private JedisPool jedisPool;  
       
@@ -36,10 +36,10 @@ public class RedisClient<T> {
         }  
     }  
       
-    public void setobj(String key, T value) throws Exception {  
+    public void setobj(String key, Object value) throws Exception {  
         Jedis jedis = null;  
         try {  
-            Set<T> set = new HashSet<T>();
+            Set<Object> set = new HashSet<Object>();
             set.add(value);
             jedis = jedisPool.getResource();  
             jedis.sadd(key, String.valueOf(set));
@@ -48,5 +48,42 @@ public class RedisClient<T> {
             jedis.close();  
         }  
         
+    }
+    /**
+     * 设置有效期
+     * @param key
+     * @param exTime
+     * @return
+     */
+    public Long expire(String key,int exTime){
+        Jedis jedis = null;
+        try {
+        	jedis = jedisPool.getResource();  
+        	return jedis.expire(key,exTime);
+        }finally {  
+            //返还到连接池  
+            jedis.close();  
+        }  
+    }
+    //exTime的单位是秒
+    public String setEx(String key,String value,int exTime){
+        Jedis jedis = null;
+        try {
+        	jedis = jedisPool.getResource();  
+        	return jedis.setex(key,exTime,value);
+        }finally {  
+            //返还到连接池  
+            jedis.close();  
+        }  
+    }
+    public Long del(String key){
+        Jedis jedis = null;
+        try {
+        	jedis = jedisPool.getResource();  
+        	return jedis.del(key);
+        }finally {  
+            //返还到连接池  
+            jedis.close();  
+        }  
     }
 }

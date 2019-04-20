@@ -22,11 +22,11 @@ public class Test1 {
 	@Test
     public void getLearn() throws Exception{
 		 try {
-             redisClinet.set("room", JSON.toJSONString("DDD"));
+             redisClinet.set("DE", JSON.toJSONString("北京赛车版"));
      } catch (Exception e) {
          e.printStackTrace();
      }
-     log.info(redisClinet.get("room"));//打印info级别的日志
+     log.info(redisClinet.get("DE"));//打印info级别的日志
     }
 	
 	
