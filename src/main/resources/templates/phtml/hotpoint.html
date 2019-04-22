@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="ne_wrap" class="ua-win">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="ie-stand">
+    <link rel="Bookmark" href="/favicon1.ico" >
+    <link rel="Shortcut Icon" href="/favicon1.ico"/>
+    <title>热点</title>
+    <script type="text/javascript" src="http://img.fjii.com/w/js/client_side.js"></script>
+    <link rel="stylesheet" href="http://img.fjii.com/w/templates/lang/css/default.css?v=3">
+    <script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/jquery.min.js"></script>
+</head>
+<body style="background-color: #d2acac">
+<!-- 头部 开始 -->
+<div class="header">
+    <div class="header-common warp">
+        <div class="sub-nav pull-right" style="overflow: hidden;height: 56px;">
+            <div style="margin-top:5px;;">
+                <script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=14010957482775650959' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+            </div>
+            <div class="search-box pull-left">
+                <input type="text" class="search-t" name="wd" placeholder="搜索">
+                <input type="button" class="search-btn FontAwesome" value="">
+            </div>
+            <div class="auth-user-info pull-left"><a href="javascript:void(0)" class="js-login">登录</a><span class="split-icon"></span><a class="js-register" href="javascript:void(0)">注册</a></div>
+        </div>
+        <!-- 头部导航 开始 -->
+        <ul id="nav" class="header-menu">
+            <li data-catid=0 class="nav-news"><a href="http://localhost:8090/weibo">首页</a></li>
+            <li data-catid=2 class="nav-news  active">
+                <a href="http://localhost:8090/hotpoint" target="_blank">热点</a>
+
+            </li>
+            <li data-catid=9 class="nav-news ">
+                <ul class="menu-column">
+                    <li data-catid=74 ><a href="http://www.fjii.com/kj/jsc/" target="_blank" class="transition ">技术潮</a></li>
+                    <li data-catid=75 ><a href="http://www.fjii.com/kj/zx/" target="_blank" class="transition ">智享+</a></li>
+                    <li data-catid=76 ><a href="http://www.fjii.com/kj/kwg/" target="_blank" class="transition ">酷玩馆</a></li>
+                    <li data-catid=141 ><a href="http://www.fjii.com/kj/chain/" target="_blank" class="transition ">区块链</a></li>
+                </ul>
+                <a href="http://www.fjii.com/kj/" target="_blank">学习<i class="caret"></i></a>
+
+            </li>
+            <li data-catid=7 class="nav-news ">
+                <ul class="menu-column">
+                    <li data-catid=67 ><a href="http://www.fjii.com/cj/ssjj/" target="_blank" class="transition ">数说经济</a></li>
+                    <li data-catid=68 ><a href="http://www.fjii.com/cj/gssl/" target="_blank" class="transition ">股市声雷</a></li>
+                    <li data-catid=69 ><a href="http://www.fjii.com/cj/dcdg/" target="_blank" class="transition ">地产大观</a></li>
+                </ul>
+                <a href="http://www.fjii.com/cj/" target="_blank">简书<i class="caret"></i></a>
+
+            </li>
+            <li data-catid=6 class="nav-news ">
+                <ul class="menu-column">
+                    <li data-catid=64 ><a href="http://www.fjii.com/gd/sp/" target="_blank" class="transition ">时评</a></li>
+                    <li data-catid=65 ><a href="http://www.fjii.com/gd/sxc/" target="_blank" class="transition ">舆情</a></li>
+                    <li data-catid=66 ><a href="http://www.fjii.com/gd/dks/" target="_blank" class="transition ">大咖说</a></li>
+                </ul>
+                <a href="http://localhost:8090/microblog" target="_blank">微博<i class="caret"></i></a>
+
+            </li>
+            <li data-catid=11 class="nav-news ">
+                <ul class="menu-column">
+                    <li data-catid=82 ><a href="http://www.fjii.com/sh/cx/" target="_blank" class="transition ">车讯</a></li>
+                    <li data-catid=83 ><a href="http://www.fjii.com/sh/lx/" target="_blank" class="transition ">旅行</a></li>
+                    <li data-catid=84 ><a href="http://www.fjii.com/sh/jk/" target="_blank" class="transition ">健康</a></li>
+                    <li data-catid=85 ><a href="http://www.fjii.com/sh/shzz/" target="_blank" class="transition ">生活主张</a></li>
+                    <li data-catid=86 ><a href="http://www.fjii.com/sh/shyf/" target="_blank" class="transition ">诗和远方</a></li>
+                </ul>
+                <a href="http://www.fjii.com/sh/" target="_blank">生活<i class="caret"></i></a>
+
+            </li>
+            <li data-catid=138 class="nav-news ">
+                <a href="http://www.fjii.com/tj/" target="_blank">图记</a>
+
+            </li>
+
+        </ul>
+        <!-- 头部导航 结束 -->
+    </div>
+</div>
+<script>
+    if(typeof(catid)=="undefined"){
+    } else if (catid > 0) {
+        $('#nav').find('li').each(function(i,dom){
+            var cc = $(dom).data('catid');
+            if (cc == 0) {
+                current = dom;
+            }
+            if (cc == catid) {
+                $(current).removeClass('active');
+                $(dom).addClass('active');
+            }
+        });
+    }
+</script>
+<!-- 头部 结束 -->
+<!-- 广告位1 op -->
+
+
+<!-- 广告位1 ed -->
+<!-- 面包屑 op -->
+<!-- 面包屑 ed -->
+<div class="indx_content warp">
+    <div class="u-width884 mt20 pull-left">
+        <!-- 列表 开始 -->
+        <div class="list-main clearfix">
+            <!-- 左边列表 -->
+            <div class="list-left">
+                <div id="container" class="newsbox">
+                    <div class="news_li animate" ids="adds" >
+                        <div class="neselis">
+                            <span class="mark pc_mark">荆州新闻网</span>
+                            <div class=" news_tu">
+                                <a href="http://news.jznews.com.cn/system/2019/04/20/011960077.shtml" class="tiptitleImg" target="_blank" title="2019年湖北公务员考试开考 荆州考区7622人参加">
+                                    <img src="../static/picture/湖北公务员.jpg" alt="2019年湖北公务员考试开考 荆州考区7622人参加">
+                                    <span class="p_time"></span>
+                                </a>
+                            </div>
+                            <h2 ><a href="http://www.fjii.com/jx/2019/0419/213128.shtml" target="_blank">2019年湖北公务员考试开考 荆州考区7622人参加</a></h2>
+                            <p>荆州新闻网消息湖北省2019年度考试录用公务员笔试荆州分考区考试于今天（4月20日）上午举行，8:30起，考生进场，上午9:00~11:00考行政职业能力测验，下午14:00~16:30考申论...</p>
+                            <div class="pdtt_trbs">
+                                <a href="http://www.fjii.com/jx/2019/0419/213128.shtml" target="_blank">荆州新闻网</a>
+                                <span>20小时前</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news_li animate" ids="adds" >
+                        <div class="neselis">
+                            <span class="mark pc_mark">荆州新闻网</span>
+                            <div class=" news_tu">
+                                <a href="http://news.jznews.com.cn/system/2019/04/20/011960083.shtml" class="tiptitleImg" target="_blank" title="海内外消化科大咖齐聚荆州 分享最新医学成果">
+                                    <img src="../static/picture/海内外消化科.jpg" alt="海内外消化科大咖齐聚荆州 分享最新医学成果">
+                                    <span class="p_time"></span>
+                                </a>
+                            </div>
+                            <h2 ><a href="http://www.fjii.com/jx/2019/0419/213128.shtml" target="_blank">海内外消化科大咖齐聚荆州 分享最新医学成果</a></h2>
+                            <p>　荆州新闻网消息(记者 杨辉 通讯员 龚天佐)4月20日上午，湖北省医师协会消化医师分会2019年学术年会在荆州召开，首都医科大学附属北京中医医院教授张声生、美国约翰霍普金斯大学教授陈建德...</p>
+                            <div class="pdtt_trbs">
+                                <a href="http://news.jznews.com.cn/system/2019/04/20/011960083.shtml" target="_blank">荆州新闻网</a>
+                                <span>20小时前</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news_li animate" ids="adds" >
+                        <div class="neselis">
+                            <span class="mark pc_mark">荆州新闻网</span>
+                            <div class=" news_tu">
+                                <a href="http://www.jznews.com.cn/web/2018changjiangdabaohu/" class="tiptitleImg" target="_blank" title="长江大保护，荆州有担当">
+                                    <img src="../static/picture/荆州.jpg" alt="长江大保护，荆州有担当">
+                                    <span class="p_time"></span>
+                                </a>
+                            </div>
+                            <h2 ><a href="http://www.jznews.com.cn/web/2018changjiangdabaohu/" target="_blank">长江大保护，荆州有担当</a></h2>
+                            <p>　荆州新闻网消息：习近平总书记在视察长江大保护工作时说：“推动长江经济带发展必须从中华民族长远利益考虑，走生态优先、绿色发展之路，使绿水青山产生巨大生态效益、经济效益、社会效益，使母亲河永葆生机活力,荆江之治，激浊扬清，顺应民心民愿...</p>
+                            <div class="pdtt_trbs">
+                                <a href="http://www.fjii.com/jx/2019/0419/213128.shtml" target="_blank">荆州新闻网</a>
+                                <span>20小时前</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news_li animate" ids="adds" >
+                        <div class="neselis">
+                            <span class="mark pc_mark">工院官网</span>
+                            <div class=" news_tu">
+                                <a href="http://news.jznews.com.cn/system/2019/04/20/011960077.shtml" class="tiptitleImg" target="_blank" title="2019年湖北公务员考试开考 荆州考区7622人参加">
+                                    <img src="../static/picture/38.jpg" alt="2019年湖北公务员考试开考 荆州考区7622人参加">
+                                    <span class="p_time"></span>
+                                </a>
+                            </div>
+                            <h2 ><a href="http://www.fjii.com/jx/2019/0419/213128.shtml" target="_blank">2019年湖北公务员考试开考 荆州考区7622人参加</a></h2>
+                            <p>荆州新闻网消息(记者胡威虎 卢艳)湖北省2019年度考试录用公务员笔试荆州分考区考试于今天（4月20日）上午举行，8:30起，考生进场，上午9:00~11:00考行政职业能力测验，下午14:00~16:30考申论...</p>
+                            <div class="pdtt_trbs">
+                                <a href="http://www.fjii.com/jx/2019/0419/213128.shtml" target="_blank">荆州新闻网</a>
+                                <span>20小时前</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news_li animate" ids="adds" >
+                        <div class="neselis">
+                            <span class="mark pc_mark">工院官网</span>
+                            <div class=" news_tu">
+                                <a href="http://news.jznews.com.cn/system/2019/04/20/011960083.shtml" class="tiptitleImg" target="_blank" title="海内外消化科大咖齐聚荆州 分享最新医学成果">
+                                    <img src="../static/picture/国旗班.jpg" alt="海内外消化科大咖齐聚荆州 分享最新医学成果">
+                                    <span class="p_time"></span>
+                                </a>
+                            </div>
+                            <h2 ><a href="http://www.fjii.com/jx/2019/0419/213128.shtml" target="_blank">海内外消化科大咖齐聚荆州 分享最新医学成果</a></h2>
+                            <p>　荆州新闻网消息(记者 杨辉 通讯员 龚天佐)4月20日上午，湖北省医师协会消化医师分会2019年学术年会在荆州召开，首都医科大学附属北京中医医院教授张声生、美国约翰霍普金斯大学教授陈建德...</p>
+                            <div class="pdtt_trbs">
+                                <a href="http://news.jznews.com.cn/system/2019/04/20/011960083.shtml" target="_blank">荆州新闻网</a>
+                                <span>20小时前</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="news_li animate" ids="adds" >
+                        <div class="neselis">
+                            <span class="mark pc_mark">工院官网</span>
+                            <div class=" news_tu">
+                                <a href="http://www.jznews.com.cn/web/2018changjiangdabaohu/" class="tiptitleImg" target="_blank" title="长江大保护，荆州有担当">
+                                    <img src="../static/picture/工院领导.jpg" alt="长江大保护，荆州有担当">
+                                    <span class="p_time"></span>
+                                </a>
+                            </div>
+                            <h2 ><a href="http://www.jznews.com.cn/web/2018changjiangdabaohu/" target="_blank">长江大保护，荆州有担当</a></h2>
+                            <p>　荆州新闻网消息：习近平总书记在视察长江大保护工作时说：“推动长江经济带发展必须从中华民族长远利益考虑，走生态优先、绿色发展之路，使绿水青山产生巨大生态效益、经济效益、社会效益，使母亲河永葆生机活力...</p>
+                            <div class="pdtt_trbs">
+                                <a href="http://www.fjii.com/jx/2019/0419/213128.shtml" target="_blank">荆州新闻网</a>
+                                <span>20小时前</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 左边列表 -->
+        </div>
+        <!-- 加载中 -->
+        <div id="infscr-loading" style="display: none;"><img alt="Loading..." src="http://img.fjii.com/w/templates/lang/images/loading.gif"><div>正在加载中...</div></div>
+        <!-- 加载中 -->
+        <div class="loading_more" >浏览更多<span class="icon-arrow-right"></span></div>
+        <!-- 列表 结束 -->
+    </div>
+    <!-- 右边列表 开始 -->
+    <div class="u-width286 mt20 pull-right">
+        <!-- 广告2 开始 -->
+        <div class="top_ad top_ad2">
+            <a href="https://mp.weixin.qq.com/s/e5rHQWRGSuIh2_dO-MrDdQ" target="_blank" title="与吾畅谈" rel="nofollow" >
+                <img src="../static/picture/wq.gif" alt="与吾畅谈" width="286" height="220">
+            </a>
+        </div>
+
+        <!-- 广告2 结束 -->
+        <!-- 一周热门 开始 -->
+        <!-- 正文一周热门 开始 -->
+        <div class="widget-box widget-hot-article-box mt20">
+            <div class="widget widget-hot-article">
+                <h4>一周热门</h4>
+                <div class="w_content ">
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0415/212547.shtml" title="爱立信遭反垄断调查   中国亮剑力斩专利“挡箭牌”" target="_blank"><div class="index font1">1</div><div class="doc-title">举办第一期“互联网+”训练营通知...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/cj/ssjj/2019/0415/212413.shtml" title="新版征信报告来袭，对楼市影响究竟有多大？" target="_blank"><div class="index font2">2</div><div class="doc-title">中共中央、国务院印发《中国教...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/kj/kwg/2019/0416/212585.shtml" title="华为EMUI 9.1揭秘：利器EROFS开启Mate20系列不限量升级" target="_blank"><div class="index font3">3</div><div class="doc-title">学院辩论赛总决赛圆满结束...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0413/212381.shtml" title="京东成立旅游公司，“插足”红海市场为哪般？" target="_blank"><div class="index font4">4</div><div class="doc-title">新生杯篮球赛正式拉开帷幕...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/kj/kwg/2019/0417/212898.shtml" title="一图看懂荣耀MagicBook 2019笔记本" target="_blank"><div class="index font5">5</div><div class="doc-title">国旗班第十一届成立大会暨交...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/cj/ssjj/2019/0417/212765.shtml" title="高通苹果官司和解，英特尔退出手机5G基带市场" target="_blank"><div class="index font6">6</div><div class="doc-title">我院新增三个本科专业...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0413/212377.shtml" title="饿了么放出狠话：明年外卖行业一半份额要归我" target="_blank"><div class="index font7">7</div><div class="doc-title">我院召开本学期第二次教学工...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0416/212745.shtml" title="2019中国商界领袖之首，任正非如今不再低调" target="_blank"><div class="index font8">8</div><div class="doc-title">建档立卡贫困户子女情况证明表...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0417/212914.shtml" title="中国电信启动光纤集采  5G建设潮产业细分机遇浮现" target="_blank"><div class="index font9">9</div><div class="doc-title">学院举办插花艺术活动喜...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0414/212386.shtml" title="大盘短线面临关键节点　方向选择关注三方面" target="_blank"><div class="index font10">10</div><div class="doc-title">新学期，新开始 ——工院领导...</div></a>
+                </div>
+            </div>
+        </div>
+        <!-- 正文一周热门 结束 -->
+
+        <!-- 一周热门 结束 -->
+        <!-- 广告2 开始 -->
+        <div>
+            <script type="text/javascript">
+                panshi_a ="3142696960_4273807360_1";
+                panshi_b ="300_250_12";
+            </script>
+            <script type="text/javascript"	src="http://s.adyun.com/show_ps3.js"></script>
+        </div>
+        <!-- 广告2 结束 -->
+        <!-- 热门图片 开始 -->
+
+
+    </div>      <!-- 右边列表 结束 -->
+</div>
+
+<!-- 底部 开始 -->
+
+
+<!-- 返回顶部 结束 -->
+<script type="text/javascript" >var rember_publish = "1555488373"; </script>
+<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/hxw_slide.js"></script>
+<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/blocksit.min.js"></script>
+<script type="text/javascript" src="http://img.fjii.com/w/js/config.js"></script>
+<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/jquery.cookie.js"></script>
+<!--<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/index.js?v=3"></script>-->
+<script type="text/javascript" src="../lib/index3.js"></script>
+
+</body>
+</html>

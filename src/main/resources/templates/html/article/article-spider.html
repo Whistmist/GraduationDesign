@@ -80,7 +80,7 @@
 				var md=(oldTime.getMonth()+1)+"/"+oldTime.getDate();
 				$.ajax({
 					type: 'POST',
-					url: 'http://localhost:8090' + '/todayInHistory',
+					url: 'http://localhost:8080' + '/todayInHistory',
 					dataType: 'json',
 					data:{"YD":time},
 					contentType: 'application/json',
@@ -91,7 +91,7 @@
 						console.log(result.data);
 						var json =result.data;
 						$("tbody").html("");
-						$(".r strong").html(result.data.length);
+						$(".r strong").html(result.data.length-1);
 						$.each(result.data,function(i,item){
 							html +="<tr class='text-c'>";
 							html +="<td><input type='checkbox' value='' name=''></td>";

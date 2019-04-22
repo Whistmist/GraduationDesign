@@ -15,9 +15,11 @@
 	
 	<typeAliases>
        <typeAlias type="com.mgj.entity.Article" alias="article" />
+        <typeAlias type="com.mgj.entity.MicroBlog" alias="microBlog" />
     </typeAliases>
     <mappers>
     	<mapper resource="mapper/article.xml"/>
+        <mapper resource="mapper/microblog.xml"/>
     </mappers>
     
 </configuration>

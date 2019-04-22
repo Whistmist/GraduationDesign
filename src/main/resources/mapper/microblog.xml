@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mgj.dao.MicroBlogDao" >
+	<insert id="insertTo" parameterType="list">
+		insert into micro_blog(title,img,inform,url,attention,number) values
+		<foreach collection="list" item="item" separator=",">
+             (#{item.title},#{item.img},#{item.inform},#{item.url},#{item.attention},#{item.number})
+        </foreach>
+	</insert>
+	<select id="getMicroBlog" resultType="microBlog">
+		select title,img,inform,url,attention,number from micro_blog limit 9
+	</select>
+</mapper>

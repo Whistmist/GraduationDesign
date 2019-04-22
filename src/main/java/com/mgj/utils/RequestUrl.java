@@ -40,7 +40,7 @@ public class RequestUrl {
 			reader.close();
 			result = sbf.toString();
 		} catch (Exception e) {
-			log.error("历史上的今天爬虫失败:"+e.getMessage());
+			log.error(e.getMessage());
 		}
 		return result;
 	}
