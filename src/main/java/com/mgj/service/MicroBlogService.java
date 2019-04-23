@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,6 +24,22 @@ public class MicroBlogService {
      * @return
      */
     public boolean insertTo(List<MicroBlog> list) {
+        if(list==null){
+            return false;
+        }
+        List<String> hasList =microBlogDao.queryAllMicroBlogTitle();
+        List<MicroBlog> deleteList=new ArrayList<MicroBlog>();
+        for (MicroBlog no : list) {
+            for (String has : hasList){
+                if(no.getTitle().equals(has)){
+                    deleteList.add(no);
+                    continue;
+                }
+            }
+        }
+        if(deleteList!=null){
+            list.removeAll(deleteList);
+        }
         boolean bool=true;
         int flag = microBlogDao.insertTo(list);
         if(flag<=0){

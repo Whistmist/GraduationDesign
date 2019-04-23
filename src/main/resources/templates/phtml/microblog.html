@@ -13,7 +13,10 @@
     <script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/jquery.min.js"></script>
     <script type="text/javascript" src="../lib/html5shiv.js"></script>
     <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
     <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="../lib/layer/2.4/skin/layer.css" />
     <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
     <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
     <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
@@ -21,16 +24,15 @@
     <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css" />
     <script>
         $(function(){
-
-
+            run();
             $.ajax({
                 type: 'POST',
                 url: 'http://localhost:8090' + '/toGetMicroBlog',
                 dataType: 'json',
                 contentType: 'application/json',
-               /* beforeSend: function () {
+                beforeSend: function () {
                     this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
-                },*/
+                },
                 success: function(result) {
                     var html="";
                     console.log(result);
@@ -39,39 +41,77 @@
                      $.each(result,function(i,item){
                          html +="<div class='news_li animate' ids='adds' >";
                             html +=" <div class='neselis' style='width: 280px;height: 336px;'>";
-                            html +=" <span class='mark pc_mark'>"+item.title+"</span>";
-                            html +=" <div class=' news_tu'>";
-                            html +=" <a href="+item.url+" class='tiptitleImg' target='_blank'>";
-                            html +="<img src="+item.img+" alt="+item.title+">";
-                            html +" <span class='p_time'></span>";
-                            html +=" </a>";
-                            html +=" </div>";
-                            html +=" <p style=' text-indent:2em;'>"+item.inform+"</p>";
-                            /*html +"<div class='pdtt_trbs'>";
-                            html +="  <a href="+item.url+" target='_blank'><strong>"+item.number+"</strong>次点击</a>";
-                            html +=" <span>3小时前</span>";
-                            html +=" </div>";*/
+                                html +=" <span class='mark pc_mark'>"+item.title+"</span>";
+                                    html +=" <div class=' news_tu'>";
+                                        html +=" <a href="+item.url+" class='tiptitleImg' target='_blank'>";
+                                            html +="<img src="+item.img+" alt="+item.title+">";
+                                            html +" <span class='p_time'></span>";
+                                        html +=" </a>";
+                                    html +=" </div>";
+                                    html +="<div>"+item.inform+"</div>";
+                                    html +"<div>";
+                                        html +=item.number;
+                                    html +=" </div>";
                             html +=" </div>";
                         html +=" </div>";
                      })
                      $("#container").append(html);
-                    /*layer.close(this.layerIndex);*/
+                    layer.close(this.layerIndex);
                 },
                 error: function () { //报错时执行
-                   /* layer.close(this.layerIndex);
+                   layer.close(this.layerIndex);
                     layer.alert('网络异常，请检查后重试', {
                         skin: 'layui-layer-molv'
                         , closeBtn: 0
                         , shift: 2 //动画类型
-                    });*/
-                   alert("错误");
+                    });
                 }
             });
+            window.setInterval("run()", 60000);
         });
+        function run(){
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8090' + '/getTopTen',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(result) {
+                    var html="";
+                    console.log(result);
+                    var json =result.data;
+                    $(".w_content").html("");
+                    //<img src="img/0.gif" width="20px">
+                    $.each(result,function(i,item){
+                        html +="<a class='doc item-0 ' href="+item.url+" title="+item.title+" target='_blank'>";
+                        if(item.attention=="新"){
+                            html +="    <div class='index font1'><img src='../static/picture/0.gif' width='20px'></div>";
+                        }else if(item.attention=="热"){
+                            html +="    <div class='index font1'><img src='../static/picture/1.gif' width='20px'></div>";
+                        }else if(item.attention=="沸"){
+                            html +="    <div class='index font1'><img src='../static/picture/2.gif' width='20px'></div>";
+                        }else {
+                            html +="    <div class='index font1'></div>";
+                        }
+                        /*html +="    <div class='index font1'>1</div>";*/
+                        html +="    <div class='doc-title'>"+item.title+"</div>";
+                        html +="</a>";
+                    });
+                    $(".w_content").append(html);
+                },
+                error: function () { //报错时执行
+                    layer.close(this.layerIndex);
+                    layer.alert('网络异常，请检查后重试', {
+                        skin: 'layui-layer-molv'
+                        , closeBtn: 0
+                        , shift: 2 //动画类型
+                    });
+                }
+            });
+        }
     </script>
 
 </head>
-  <body style="background-color: #d2acac">
+  <body style="background-color: #fafafa">
 
 <div class="header">
     <div class="header-common warp">
@@ -195,18 +235,18 @@
         <!-- 正文一周热门 开始 -->
         <div class="widget-box widget-hot-article-box mt20">
             <div class="widget widget-hot-article">
-                <h4>一周热门</h4>
+                <h4>最新动态</h4><a style="margin-left: 87px;" href="#" onclick="run()" title="点击更新">每分钟更新</a>
                 <div class="w_content ">
-                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0415/212547.shtml" title="爱立信遭反垄断调查   中国亮剑力斩专利“挡箭牌”" target="_blank"><div class="index font1">1</div><div class="doc-title">举办第一期“互联网+”训练营通知...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/cj/ssjj/2019/0415/212413.shtml" title="新版征信报告来袭，对楼市影响究竟有多大？" target="_blank"><div class="index font2">2</div><div class="doc-title">中共中央、国务院印发《中国教...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/kj/kwg/2019/0416/212585.shtml" title="华为EMUI 9.1揭秘：利器EROFS开启Mate20系列不限量升级" target="_blank"><div class="index font3">3</div><div class="doc-title">学院辩论赛总决赛圆满结束...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0413/212381.shtml" title="京东成立旅游公司，“插足”红海市场为哪般？" target="_blank"><div class="index font4">4</div><div class="doc-title">新生杯篮球赛正式拉开帷幕...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/kj/kwg/2019/0417/212898.shtml" title="一图看懂荣耀MagicBook 2019笔记本" target="_blank"><div class="index font5">5</div><div class="doc-title">国旗班第十一届成立大会暨交...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/cj/ssjj/2019/0417/212765.shtml" title="高通苹果官司和解，英特尔退出手机5G基带市场" target="_blank"><div class="index font6">6</div><div class="doc-title">我院新增三个本科专业...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0413/212377.shtml" title="饿了么放出狠话：明年外卖行业一半份额要归我" target="_blank"><div class="index font7">7</div><div class="doc-title">我院召开本学期第二次教学工...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0416/212745.shtml" title="2019中国商界领袖之首，任正非如今不再低调" target="_blank"><div class="index font8">8</div><div class="doc-title">建档立卡贫困户子女情况证明表...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0417/212914.shtml" title="中国电信启动光纤集采  5G建设潮产业细分机遇浮现" target="_blank"><div class="index font9">9</div><div class="doc-title">学院举办插花艺术活动喜...</div></a>
-                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0414/212386.shtml" title="大盘短线面临关键节点　方向选择关注三方面" target="_blank"><div class="index font10">10</div><div class="doc-title">新学期，新开始 ——工院领导...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0418/213099.shtml" title="四川电信助力雅安大数据产业发展" target="_blank"><div class="index font1"><img src='../static/picture/2.gif' width='20px'></div><div class="doc-title">四川电信助力雅安大数据产...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/kj/kwg/2019/0417/212898.shtml" title="一图看懂荣耀MagicBook 2019笔记本" target="_blank"><div class="index font2"><img src='../static/picture/2.gif' width='20px'></div><div class="doc-title">一图看懂荣耀MagicBook 201...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/cj/ssjj/2019/0417/212765.shtml" title="高通苹果官司和解，英特尔退出手机5G基带市场" target="_blank"><div class="index font3"><img src='../static/picture/1.gif' width='20px'></div><div class="doc-title">高通苹果官司和解，英特尔...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/kj/kwg/2019/0418/212939.shtml" title="小米MIUI 11功能预热大集合，你想知道的在这里" target="_blank"><div class="index font4"><img src='../static/picture/0.gif' width='20px'></div><div class="doc-title">小米MIUI 11功能预热大集合...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/cj/ssjj/2019/0419/213124.shtml" title="中国银行业每年IT投入上千亿，钱都去哪了？" target="_blank"><div class="index font5"><img src='../static/picture/1.gif' width='20px'></div><div class="doc-title">中国银行业每年IT投入上千...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0418/213103.shtml" title="刚刚！传言成真，亚马逊将退出中国" target="_blank"><div class="index font6"><img src='../static/picture/1.gif' width='20px'></div><div class="doc-title">刚刚！传言成真，亚马逊将...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0416/212745.shtml" title="2019中国商界领袖之首，任正非如今不再低调" target="_blank"><div class="index font7"><img src='../static/picture/0.gif' width='20px'></div><div class="doc-title">2019中国商界领袖之首，任...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0417/212914.shtml" title="中国电信启动光纤集采  5G建设潮产业细分机遇浮现" target="_blank"><div class="index font8"><img src='../static/picture/2.gif' width='20px'></div><div class="doc-title">中国电信启动光纤集采  5G...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0419/213250.shtml" title="首个5G独立组网电话打通，为何真正的5G首选SA模式？" target="_blank"><div class="index font9"><img src='../static/picture/0.gif' width='20px'></div><div class="doc-title">首个5G独立组网电话打通，...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0419/213128.shtml" title="京东收购五星电器46%股份，在苏宁“老家”叫板反攻线下" target="_blank"><div class="index font10"><img src='../static/picture/1.gif' width='20px'></div><div class="doc-title">京东收购五星电器46%股份，...</div></a>
                 </div>
             </div>
         </div>
@@ -239,5 +279,4 @@
 <script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/jquery.cookie.js"></script>
 <!--<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/index.js?v=3"></script>-->
 <script type="text/javascript" src="../lib/index3.js"></script>
-
   </body>

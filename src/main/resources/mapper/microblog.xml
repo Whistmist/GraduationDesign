@@ -10,4 +10,7 @@
 	<select id="getMicroBlog" resultType="microBlog">
 		select title,img,inform,url,attention,number from micro_blog limit 9
 	</select>
+	<select id="queryAllMicroBlogTitle" resultType="String">
+		select title from micro_blog
+	</select>
 </mapper>

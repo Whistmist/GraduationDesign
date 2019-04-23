@@ -26,6 +26,20 @@ public class SpiderController {
 	@Value("${microBlogNum}")
 	private Integer microBlogNum;
 
+	@RequestMapping(value="getTopTen")
+	@ResponseBody
+	public List<MicroBlog> getTopTen() throws InterruptedException {
+		String httpUrl ="http://s.weibo.com/top/summary?cate=realtimehot";
+		Document page = MicroBlogUtil.get_page(httpUrl);
+		List<MicroBlog> list = null;
+		try{
+			list=MicroBlogUtil.getTopTen(page, 10);
+			log.info(list.toString());
+		}catch (Exception e){
+			System.out.println("微博爬虫失败---》"+e.getMessage());
+		}
+		return list;
+	}
 	@Autowired
     private MicroBlogService microBlogService;
 	@RequestMapping("getMicroBlog")
@@ -37,11 +51,11 @@ public class SpiderController {
         boolean bool=false;
         try{
             list=MicroBlogUtil.Analysis_page(page, microBlogNum);
-             bool=microBlogService.insertTo(list);
+			bool=microBlogService.insertTo(list);
+			log.info(list.toString());
         }catch (Exception e){
             System.out.println("微博爬虫失败---》"+e.getMessage());
         }
-        log.info(list.toString());
         System.out.println(bool);
         return list;
 	}

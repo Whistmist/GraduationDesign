@@ -27,17 +27,31 @@ public class ArticleController {
 		return articleService.saveArticle(articles);
 	}
 
+
 	@RequestMapping(value="toGetMicroBlog")
 	@ResponseBody
 	public List<MicroBlog> saveInformation(){
 		List<MicroBlog> list=microBlogService.getMicroBlog();
 		for (MicroBlog microBlog: list ) {
 			if("".equals(microBlog.getInform())&&microBlog.getInform().length()==0){
-				microBlog.setInform("<h1 style='text-align: center;'>暂  无</h1>");
-			}else if (microBlog.getInform().length() > 130) {
-				microBlog.setInform(microBlog.getInform().substring(0, 130) + "...");
+				microBlog.setInform("<h1 style='line-height: 108px;text-align: center;'>暂  无</h1>");
+			}else if (microBlog.getInform().length() > 120) {
+				String string=microBlog.getInform().substring(0, 120);
+				if(string.endsWith("</")) {
+					string = string.substring(0,string.length()-2);
+					string +="...</p>";
+				}else if (string.endsWith("</p")) {
+					string=string.substring(0,string.length()-3);
+					string +="...</p>";
+				}else{
+					string +="...";
+				}
+				microBlog.setInform(string);
+			}else{
+				StringBuffer stringBuffer = new StringBuffer(microBlog.getInform());
+				String string = stringBuffer.insert(2, " style='height: 118px;'").toString();
+				microBlog.setInform(string);
 			}
-
 		}
 		return list;
 	}

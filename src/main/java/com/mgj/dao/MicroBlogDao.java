@@ -14,4 +14,6 @@ public interface MicroBlogDao {
     int insertTo(List<MicroBlog> list);
 
     List<MicroBlog> getMicroBlog();
+
+    List<String> queryAllMicroBlogTitle();
 }

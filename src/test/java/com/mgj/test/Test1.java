@@ -1,16 +1,17 @@
 package com.mgj.test;
 
 
+import com.alibaba.fastjson.JSON;
+import com.mgj.common.RedisClient;
+import com.mgj.dao.MicroBlogDao;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.alibaba.fastjson.JSON;
-import com.mgj.common.RedisClient;
-
-import lombok.extern.slf4j.Slf4j;
+import java.util.List;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -18,7 +19,13 @@ import lombok.extern.slf4j.Slf4j;
 public class Test1 {
 	 @Autowired
 	 private RedisClient redisClinet;
-	
+	@Autowired
+    private MicroBlogDao microBlogDao;
+    @Test
+	public void  get(){
+        List<String> strings = microBlogDao.queryAllMicroBlogTitle();
+        System.out.println(strings);
+    }
 	@Test
     public void getLearn() throws Exception{
 		 try {

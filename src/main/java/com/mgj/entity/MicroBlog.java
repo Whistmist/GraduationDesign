@@ -32,4 +32,11 @@ public class MicroBlog {
     private String attention;
     //微博关注人数
     private String number;
+
+    public MicroBlog(Integer id, String title, String url, String attention) {
+        this.id = id;
+        this.title = title;
+        this.url = url;
+        this.attention = attention;
+    }
 }
