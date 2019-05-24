@@ -1,6 +1,5 @@
 package com.mgj.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,7 +15,6 @@ import lombok.NoArgsConstructor;
  */
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class MicroBlog {
     //微博标识id
     private Integer id;
@@ -32,6 +30,37 @@ public class MicroBlog {
     private String attention;
     //微博关注人数
     private String number;
+    //时间
+    private String time;
+
+    public MicroBlog(Integer id, String title, String url, String number, String time) {
+        this.id = id;
+        this.title = title;
+        this.url = url;
+        this.number = number;
+        this.time = time;
+    }
+
+    public MicroBlog(Integer id, String title, String inform, String url, String img, String attention, String number) {
+        this.id = id;
+        this.title = title;
+        this.inform = inform;
+        this.url = url;
+        this.img = img;
+        this.attention = attention;
+        this.number = number;
+    }
+
+    public MicroBlog(Integer id, String title, String inform, String url, String img, String attention, String number, String time) {
+        this.id = id;
+        this.title = title;
+        this.inform = inform;
+        this.url = url;
+        this.img = img;
+        this.attention = attention;
+        this.number = number;
+        this.time = time;
+    }
 
     public MicroBlog(Integer id, String title, String url, String attention) {
         this.id = id;

@@ -13,4 +13,7 @@
 	<select id="queryAllMicroBlogTitle" resultType="String">
 		select title from micro_blog
 	</select>
+	<select id="queryMicroBlog" resultType="microBlog">
+		select id,title,time,url,number from micro_blog
+	</select>
 </mapper>

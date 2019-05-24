@@ -16,4 +16,6 @@ public interface MicroBlogDao {
     List<MicroBlog> getMicroBlog();
 
     List<String> queryAllMicroBlogTitle();
+
+    List<MicroBlog> queryMicroBlog();
 }

@@ -51,4 +51,8 @@ public class MicroBlogService {
     public List<MicroBlog> getMicroBlog() {
         return microBlogDao.getMicroBlog();
     }
+
+    public List<MicroBlog> queryMicroBlog() {
+        return microBlogDao.queryMicroBlog();
+    }
 }
