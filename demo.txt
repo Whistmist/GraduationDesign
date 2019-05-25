@@ -1,0 +1,21 @@
+-- ----------------------------
+-- Table structure for article
+-- ----------------------------
+DROP TABLE IF EXISTS `article`;
+CREATE TABLE `article`  (
+  `eid` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `title` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `date` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`eid`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+insert into article values
+('13578','诗圣杜甫诞生','http://static.shenjianshou.cn/image/904438-cafd0140311a4eed2ece8611bd5f94cf.jpg?realurl=http%3A%2F%2Fwww.todayonhistory.com%2Fupic%2F201105%2F4%2F8121835818.jpg','712年02月12日'),
+('13348','诗圣杜甫诞生','http://static.shenjianshou.cn/image/904438-cafd0140311a4eed2ece8611bd5f94cf.jpg?realurl=http%3A%2F%2Fwww.todayonhistory.com%2Fupic%2F201105%2F4%2F8121835818.jpg','712年02月12日'),
+('13988','诗圣杜甫诞生','http://static.shenjianshou.cn/image/904438-cafd0140311a4eed2ece8611bd5f94cf.jpg?realurl=http%3A%2F%2Fwww.todayonhistory.com%2Fupic%2F201105%2F4%2F8121835818.jpg','712年02月12日'),
+('45896','诗圣杜甫诞生','http://static.shenjianshou.cn/image/904438-cafd0140311a4eed2ece8611bd5f94cf.jpg?realurl=http%3A%2F%2Fwww.todayonhistory.com%2Fupic%2F201105%2F4%2F8121835818.jpg','712年02月12日');
+
+IDEA  Perfect

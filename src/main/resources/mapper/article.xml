@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mgj.dao.ArticleDao" >
+	<insert id="saveArticle" parameterType="list">
+		insert into article(eid,title,img,date) values
+		<foreach collection="list" item="item" separator=",">
+             (#{item.eid},#{item.title},#{item.img},#{item.date})
+        </foreach>
+	</insert>
+	<select id="queryArticleIds" parameterType="list" resultType="string">
+		select eid from article where eid in
+		<foreach collection="list" item="item" open="(" close=");"  separator=",">
+             #{item}
+        </foreach>
+	</select>
+	<select id="queryStatistical" parameterType="String" resultType="statistical">
+		select time as year,concat_ws(",",a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) as time from (
+			SELECT YEAR(time) as time,
+			SUM(CASE WHEN MONTH(time) =1 THEN 1 ELSE 0 END) as "a1",   
+			SUM(CASE WHEN MONTH(time) =2 THEN 1 ELSE 0 END) as "a2",
+			SUM(CASE WHEN MONTH(time) =3 THEN 1 ELSE 0 END) as "a3",
+			SUM(CASE WHEN MONTH(time) =4 THEN 1 ELSE 0 END) as "a4",
+			SUM(CASE WHEN MONTH(time) =5 THEN 1 ELSE 0 END) as "a5",
+			SUM(CASE WHEN MONTH(time) =6 THEN 1 ELSE 0 END) as "a6",
+			SUM(CASE WHEN MONTH(time) =7 THEN 1 ELSE 0 END) as "a7",
+			SUM(CASE WHEN MONTH(time) =8 THEN 1 ELSE 0 END) as "a8",
+			SUM(CASE WHEN MONTH(time) =9 THEN 1 ELSE 0 END) as "a9",
+			SUM(CASE WHEN MONTH(time) =10 THEN 1 ELSE 0 END) as "a10",
+			SUM(CASE WHEN MONTH(time) =11 THEN 1 ELSE 0 END) as "a11",
+			SUM(CASE WHEN MONTH(time) =12 THEN 1 ELSE 0 END) as "a12"
+	    FROM micro_blog where YEAR(time)=YEAR(#{year}) group by YEAR(time) ) as a
+	</select>
+</mapper>

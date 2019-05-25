@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>登录</title>
+<link href="css/style.css" type="text/css" rel="stylesheet" rev="stylesheet"/>
+</head>
+<body class="denglu02">
+	<div class="dl">
+		<div class="biaoti"><img src="css/images/ico02.png" /></div>
+		<div class="log">
+			<ul class="xuzhi02">
+				 <li class="xz">欢迎登录</li>
+				 <li>❀心态有多开放, 视野就有多开阔 </li>
+				 <li>❀不忘初心, 持之以恒 ❀ S</li>
+				 <li>❀tay hungry, Stay foolish..</li>				 
+			</ul>
+			  <ul class="deng02">
+				<li style=" width:100%; height:60px;">
+					<p style="float:left;font-size:18px; color:#666;line-height:30px; ">用户名:</p> 
+					<input id="username" class="i-text" type="text"  maxlength="100" placeholder="输入用户名"/>
+				</li>
+				<div style="clear:both;"></div>
+		
+				<li style=" width:100%; height:60px;"> 
+					<p style="float:left;font-size:18px; color:#666;line-height:30px; ">密&nbsp;&nbsp;&nbsp;&nbsp;码:</p> 
+					<input id="password" class="i-text" type="text"  maxlength="100" placeholder="输入密码"/>
+				</li>
+				<div style="clear:both;"></div>
+				<li style=" width:100%; height:60px;">
+					<p style="float:left;font-size:18px; color:#666;line-height:30px; ">验证码:</p> 
+					<input id="keypwd" class="i-text" style="width: 125px;"  type="text"  maxlength="100" placeholder="输入验证码" />
+					<img style="margin-left: 30px; position: relative; top: 9px;" title="看不清换一张"  onclick="this.src='vc?key='+new Date()" src='vc?key='+new Date()''/>
+				</li>
+				<li style=" width:100%; height:60px;">
+					<button id="logonbtn" class="btn-login02" onclick="gotoLogin();" type="button" > 
+						<span>登&nbsp;&nbsp;&nbsp;&nbsp;录</span>
+				  	</button>&nbsp;&nbsp;&nbsp;&nbsp;
+				  	<button id="logonbtn" class="btn-login02" onclick="LoginPage.gotoLogin();" type="button" > 
+						<span>取&nbsp;&nbsp;&nbsp;&nbsp;消</span>
+				  	</button>
+				</li>
+			</ul>
+			
+		</div>
+	</div>
+</body>
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript">
+	function gotoLogin(){
+		var username=$("#username").val();
+		var password=$("#password").val();
+		var keypwd=$("#keypwd").val();
+		var parm='{"username":'+username+', "password":'+password+',"keypwd":'+keypwd+'}';
+		
+		$.ajax({  
+		     type: "POST",  
+		     url: "/gotoLogin",
+		     contentType: 'application/json',
+		    /*  contentType: 'application/x-www-form-urlencoded;charset=utf-8',   */
+		    /* data:"{\"username\":\""+$("#username").val()+"\"}", */
+		    data:parm,
+		     dataType: "json",  
+		     success: function(data){ 
+		    	 console.log(data);
+		    	 if(data.code==208){
+		    		 window.location.href="index";
+		    	 }else{
+		    		 alert("登录错误!");
+		    		 window.location.href="login1";
+		    	 }
+		     },
+		     error:function(e){  
+	              console.log(e);  
+	              alert("登录错误!");
+	              window.location.href="login1";
+		     }  
+		 }); 
+	}
+</script>
+</html>

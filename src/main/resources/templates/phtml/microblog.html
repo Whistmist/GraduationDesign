@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN" id="ne_wrap" class="ua-win">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="ie-stand">
+    <meta name="referrer" content="no-referrer"/>
+    <link rel="Bookmark" href="/favicon1.ico" >
+    <link rel="Shortcut Icon" href="/favicon1.ico" />
+    <title>解读信息时代的商业、技术和生活</title>
+    <script type="text/javascript" src="http://img.fjii.com/w/js/client_side.js"></script>
+    <link rel="stylesheet" href="http://img.fjii.com/w/templates/lang/css/default.css?v=3">
+    <script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/html5shiv.js"></script>
+    <script type="text/javascript" src="../lib/respond.min.js"></script>
+    <script type="text/javascript" src="../lib/layer/2.4/layer.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="../lib/layer/2.4/skin/layer.css" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui/css/H-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/H-ui.admin.css" />
+    <link rel="stylesheet" type="text/css" href="../lib/Hui-iconfont/1.0.8/iconfont.css" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/skin/default/skin.css" id="skin" />
+    <link rel="stylesheet" type="text/css" href="../static/h-ui.admin/css/style.css" />
+    <script>
+        $(function(){
+            run();
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8090' + '/toGetMicroBlog',
+                dataType: 'json',
+                contentType: 'application/json',
+                beforeSend: function () {
+                    this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
+                },
+                success: function(result) {
+                    var html="";
+                    console.log(result);
+                    var json =result.data;
+                     $("#container").html("");
+                     $.each(result,function(i,item){
+                         html +="<div class='news_li animate' ids='adds' >";
+                            html +=" <div class='neselis' style='width: 280px;height: 336px;'>";
+                                html +=" <span class='mark pc_mark'>"+item.title+"</span>";
+                                    html +=" <div class=' news_tu'>";
+                                        html +=" <a href="+item.url+" class='tiptitleImg' target='_blank'>";
+                                            html +="<img src="+item.img+" alt="+item.title+">";
+                                            html +" <span class='p_time'></span>";
+                                        html +=" </a>";
+                                    html +=" </div>";
+                                    html +="<div>"+item.inform+"</div>";
+                                    html +"<div>";
+                                        html +=item.number;
+                                    html +=" </div>";
+                            html +=" </div>";
+                        html +=" </div>";
+                     })
+                     $("#container").append(html);
+                    layer.close(this.layerIndex);
+                },
+                error: function () { //报错时执行
+                   layer.close(this.layerIndex);
+                    layer.alert('网络异常，请检查后重试', {
+                        skin: 'layui-layer-molv'
+                        , closeBtn: 0
+                        , shift: 2 //动画类型
+                    });
+                }
+            });
+            window.setInterval("run()", 60000);
+        });
+        function run(){
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8090' + '/getTopTen',
+                dataType: 'json',
+                contentType: 'application/json',
+                success: function(result) {
+                    var html="";
+                    console.log(result);
+                    var json =result.data;
+                    $(".w_content").html("");
+                    //<img src="img/0.gif" width="20px">
+                    $.each(result,function(i,item){
+                        html +="<a class='doc item-0 ' href="+item.url+" title="+item.title+" target='_blank'>";
+                        if(item.attention=="新"){
+                            html +="    <div class='index font1'><img src='../static/picture/0.gif' width='20px'></div>";
+                        }else if(item.attention=="热"){
+                            html +="    <div class='index font1'><img src='../static/picture/1.gif' width='20px'></div>";
+                        }else if(item.attention=="沸"){
+                            html +="    <div class='index font1'><img src='../static/picture/2.gif' width='20px'></div>";
+                        }else {
+                            html +="    <div class='index font1'></div>";
+                        }
+                        /*html +="    <div class='index font1'>1</div>";*/
+                        html +="    <div class='doc-title'>"+item.title+"</div>";
+                        html +="</a>";
+                    });
+                    $(".w_content").append(html);
+                },
+                error: function () { //报错时执行
+                    layer.close(this.layerIndex);
+                    layer.alert('网络异常，请检查后重试', {
+                        skin: 'layui-layer-molv'
+                        , closeBtn: 0
+                        , shift: 2 //动画类型
+                    });
+                }
+            });
+        }
+    </script>
+
+</head>
+  <body style="background-color: #fafafa">
+
+<div class="header">
+    <div class="header-common warp">
+        <div class="sub-nav pull-right" style="overflow: hidden;height: 56px;">
+            <div style="margin-top:5px;;">
+                <script type="text/javascript">(function(){document.write(unescape('%3Cdiv id="bdcs"%3E%3C/div%3E'));var bdcs = document.createElement('script');bdcs.type = 'text/javascript';bdcs.async = true;bdcs.src = 'http://znsv.baidu.com/customer_search/api/js?sid=14010957482775650959' + '&plate_url=' + encodeURIComponent(window.location.href) + '&t=' + Math.ceil(new Date()/3600000);var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(bdcs, s);})();</script>
+            </div>
+            <div class="search-box pull-left">
+                <input type="text" class="search-t" name="wd" placeholder="搜索">
+                <input type="button" class="search-btn FontAwesome" value="">
+            </div>
+            <div class="auth-user-info pull-left"><a href="javascript:void(0)" class="js-login">登录</a><span class="split-icon"></span><a class="js-register" href="javascript:void(0)">注册</a></div>
+        </div>
+        <!-- 头部导航 开始 -->
+        <ul id="nav" class="header-menu">
+            <li data-catid=0 class="nav-news"><a href="http://localhost:8090/weibo">首页</a></li>
+            <li data-catid=2 class="nav-news">
+                <a href="http://localhost:8090/hotpoint" target="_blank">热点</a>
+
+            </li>
+            <li data-catid=9 class="nav-news">
+                <ul class="menu-column">
+                    <li data-catid=74 ><a href="http://www.fjii.com/kj/jsc/" target="_blank" class="transition ">技术潮</a></li>
+                    <li data-catid=75 ><a href="http://www.fjii.com/kj/zx/" target="_blank" class="transition ">智享+</a></li>
+                    <li data-catid=76 ><a href="http://www.fjii.com/kj/kwg/" target="_blank" class="transition ">酷玩馆</a></li>
+                    <li data-catid=141 ><a href="http://www.fjii.com/kj/chain/" target="_blank" class="transition ">区块链</a></li>
+                </ul>
+                <a href="http://www.fjii.com/kj/" target="_blank">学习<i class="caret"></i></a>
+
+            </li>
+            <li data-catid=7 class="nav-news ">
+                <ul class="menu-column">
+                    <li data-catid=67 ><a href="http://www.fjii.com/cj/ssjj/" target="_blank" class="transition ">数说经济</a></li>
+                    <li data-catid=68 ><a href="http://www.fjii.com/cj/gssl/" target="_blank" class="transition ">股市声雷</a></li>
+                    <li data-catid=69 ><a href="http://www.fjii.com/cj/dcdg/" target="_blank" class="transition ">地产大观</a></li>
+                </ul>
+                <a href="http://www.fjii.com/cj/" target="_blank">简书<i class="caret"></i></a>
+
+            </li>
+            <li data-catid=6 class="nav-news  active">
+                <ul class="menu-column">
+                    <li data-catid=64 ><a href="http://www.fjii.com/gd/sp/" target="_blank" class="transition ">时评</a></li>
+                    <li data-catid=65 ><a href="http://www.fjii.com/gd/sxc/" target="_blank" class="transition ">舆情</a></li>
+                    <li data-catid=66 ><a href="http://www.fjii.com/gd/dks/" target="_blank" class="transition ">大咖说</a></li>
+                </ul>
+                <a href="http://localhost:8090/microblog" target="_blank">微博<i class="caret"></i></a>
+
+            </li>
+            <li data-catid=11 class="nav-news ">
+                <ul class="menu-column">
+                    <li data-catid=82 ><a href="http://www.fjii.com/sh/cx/" target="_blank" class="transition ">车讯</a></li>
+                    <li data-catid=83 ><a href="http://www.fjii.com/sh/lx/" target="_blank" class="transition ">旅行</a></li>
+                    <li data-catid=84 ><a href="http://www.fjii.com/sh/jk/" target="_blank" class="transition ">健康</a></li>
+                    <li data-catid=85 ><a href="http://www.fjii.com/sh/shzz/" target="_blank" class="transition ">生活主张</a></li>
+                    <li data-catid=86 ><a href="http://www.fjii.com/sh/shyf/" target="_blank" class="transition ">诗和远方</a></li>
+                </ul>
+                <a href="http://www.fjii.com/sh/" target="_blank">生活<i class="caret"></i></a>
+
+            </li>
+            <li data-catid=138 class="nav-news ">
+                <a href="http://www.fjii.com/tj/" target="_blank">图记</a>
+
+            </li>
+
+        </ul>
+        <!-- 头部导航 结束 -->
+    </div>
+</div>
+<script>
+    if(typeof(catid)=="undefined"){
+    } else if (catid > 0) {
+        $('#nav').find('li').each(function(i,dom){
+            var cc = $(dom).data('catid');
+            if (cc == 0) {
+                current = dom;
+            }
+            if (cc == catid) {
+                $(current).removeClass('active');
+                $(dom).addClass('active');
+            }
+        });
+    }
+</script>
+
+<!-- 头部 结束 -->
+<!-- 广告位1 op -->
+
+
+<!-- 广告位1 ed -->
+<!-- 面包屑 op -->
+<!-- 面包屑 ed -->
+<div class="indx_content warp">
+    <div class="u-width884 mt20 pull-left">
+        <!-- 列表 开始 -->
+        <div class="list-main clearfix">
+            <!--<div class="column-wrap">
+                <span>微博</span>
+            </div>-->
+            <!-- 左边列表 -->
+            <div class="list-left">
+                <div id="container" class="newsbox">
+
+                </div>
+            </div>
+            <!-- 左边列表 -->
+        </div>
+
+        <!-- 列表 结束 -->
+    </div>
+    <!-- 右边列表 开始 -->
+    <div class="u-width286 mt20 pull-right">
+        <!-- 广告2 开始 -->
+        <div class="top_ad top_ad2">
+            <a href="https://mp.weixin.qq.com/s/e5rHQWRGSuIh2_dO-MrDdQ" target="_blank" title="与吾畅谈" rel="nofollow" >
+                <img src="../static/picture/wq.gif" alt="与吾畅谈" width="286" height="220">
+            </a>
+        </div>
+
+        <!-- 广告2 结束 -->
+        <!-- 一周热门 开始 -->
+        <!-- 正文一周热门 开始 -->
+        <div class="widget-box widget-hot-article-box mt20">
+            <div class="widget widget-hot-article">
+                <h4>最新动态</h4><a style="margin-left: 87px;" href="#" onclick="run()" title="点击更新">每分钟更新</a>
+                <div class="w_content ">
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0418/213099.shtml" title="四川电信助力雅安大数据产业发展" target="_blank"><div class="index font1"><img src='../static/picture/2.gif' width='20px'></div><div class="doc-title">四川电信助力雅安大数据产...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/kj/kwg/2019/0417/212898.shtml" title="一图看懂荣耀MagicBook 2019笔记本" target="_blank"><div class="index font2"><img src='../static/picture/2.gif' width='20px'></div><div class="doc-title">一图看懂荣耀MagicBook 201...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/cj/ssjj/2019/0417/212765.shtml" title="高通苹果官司和解，英特尔退出手机5G基带市场" target="_blank"><div class="index font3"><img src='../static/picture/1.gif' width='20px'></div><div class="doc-title">高通苹果官司和解，英特尔...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/kj/kwg/2019/0418/212939.shtml" title="小米MIUI 11功能预热大集合，你想知道的在这里" target="_blank"><div class="index font4"><img src='../static/picture/0.gif' width='20px'></div><div class="doc-title">小米MIUI 11功能预热大集合...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/cj/ssjj/2019/0419/213124.shtml" title="中国银行业每年IT投入上千亿，钱都去哪了？" target="_blank"><div class="index font5"><img src='../static/picture/1.gif' width='20px'></div><div class="doc-title">中国银行业每年IT投入上千...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0418/213103.shtml" title="刚刚！传言成真，亚马逊将退出中国" target="_blank"><div class="index font6"><img src='../static/picture/1.gif' width='20px'></div><div class="doc-title">刚刚！传言成真，亚马逊将...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0416/212745.shtml" title="2019中国商界领袖之首，任正非如今不再低调" target="_blank"><div class="index font7"><img src='../static/picture/0.gif' width='20px'></div><div class="doc-title">2019中国商界领袖之首，任...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0417/212914.shtml" title="中国电信启动光纤集采  5G建设潮产业细分机遇浮现" target="_blank"><div class="index font8"><img src='../static/picture/2.gif' width='20px'></div><div class="doc-title">中国电信启动光纤集采  5G...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0419/213250.shtml" title="首个5G独立组网电话打通，为何真正的5G首选SA模式？" target="_blank"><div class="index font9"><img src='../static/picture/0.gif' width='20px'></div><div class="doc-title">首个5G独立组网电话打通，...</div></a>
+                    <a class="doc item-0 " href="http://www.fjii.com/jx/2019/0419/213128.shtml" title="京东收购五星电器46%股份，在苏宁“老家”叫板反攻线下" target="_blank"><div class="index font10"><img src='../static/picture/1.gif' width='20px'></div><div class="doc-title">京东收购五星电器46%股份，...</div></a>
+                </div>
+            </div>
+        </div>
+        <!-- 正文一周热门 结束 -->
+
+        <!-- 一周热门 结束 -->
+        <!-- 广告2 开始 -->
+        <div>
+            <script type="text/javascript">
+                panshi_a ="3142696960_4273807360_1";
+                panshi_b ="300_250_12";
+            </script>
+            <script type="text/javascript"	src="http://s.adyun.com/show_ps3.js"></script>
+        </div>
+        <!-- 广告2 结束 -->
+        <!-- 热门图片 开始 -->
+
+
+    </div>      <!-- 右边列表 结束 -->
+</div>
+
+<!-- 底部 开始 -->
+
+
+<!-- 返回顶部 结束 -->
+<script type="text/javascript" >var rember_publish = "1555488373"; </script>
+<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/hxw_slide.js"></script>
+<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/blocksit.min.js"></script>
+<script type="text/javascript" src="http://img.fjii.com/w/js/config.js"></script>
+<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/jquery.cookie.js"></script>
+<!--<script type="text/javascript" src="http://img.fjii.com/w/templates/lang/js/index.js?v=3"></script>-->
+<script type="text/javascript" src="../lib/index3.js"></script>
+  </body>
