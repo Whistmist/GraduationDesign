@@ -50,12 +50,7 @@ $(function () {
         	var data=[];
             console.log(result);        
             data=result;
-           var x = JSON.stringify(data);
-           
-           load(result);
-          
-           
-           
+            load(result);
             layer.close(this.layerIndex);
         },
         error: function () { //报错时执行
