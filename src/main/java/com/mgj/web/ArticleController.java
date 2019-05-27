@@ -3,6 +3,7 @@ package com.mgj.web;
 
 import com.mgj.entity.Article;
 import com.mgj.entity.MicroBlog;
+import com.mgj.entity.Series;
 import com.mgj.entity.Statistical;
 import com.mgj.service.ArticleService;
 import com.mgj.service.MicroBlogService;
@@ -13,7 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 @Controller
 public class ArticleController {
@@ -27,9 +31,24 @@ public class ArticleController {
 	 */
 	@RequestMapping(value="queryStatistical")
 	@ResponseBody
-	public List<Statistical> queryStatistical(String year){
-		System.out.println("year---------------->"+year);
-		return articleService.queryStatistical(year);
+	public List<Series> queryStatistical(String year){	
+		List<Series> list=new ArrayList<Series>();
+		list.add(new Series("微博", "column", articleService.queryStatistical(year)));
+		list.add(new Series("学院官网", "column", random()));
+		list.add(new Series("本地新闻", "column", random()));
+		list.add(new Series("系统上传", "column", random()));
+		return list;
+	}
+	private List<Integer> random() {
+		List<Integer> list1 =new ArrayList<Integer>();
+		for (int i = 0; i < 12; i++) {
+			if(i<5) {
+				list1.add((int)(1+Math.random()*50));
+			}else {
+				list1.add(0);
+			}
+		}
+		return list1;
 	}
 	/**
 	 * 保存新闻

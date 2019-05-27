@@ -38,7 +38,7 @@
 <script type="text/javascript" src="../lib/hcharts/Highcharts/5.0.6/js/modules/exporting.js"></script>
 <script type="text/javascript">
 $(function () {
-	var data="";
+	
 	$.ajax({
         type: 'POST',
         url: 'http://localhost:8090' + '/queryStatistical',      						
@@ -47,13 +47,15 @@ $(function () {
             this.layerIndex = layer.load(0, { shade: [0.5, '#393D49'] });
         },
         success: function(result) {
-            console.log(result);             
-            $.each(result,function(i,item){
-            	data=item.time;
-            });
-
+        	var data=[];
+            console.log(result);        
+            data=result;
+           var x = JSON.stringify(data);
            
-            alert(data);
+           load(result);
+          
+           
+           
             layer.close(this.layerIndex);
         },
         error: function () { //报错时执行
@@ -65,71 +67,58 @@ $(function () {
             });
         }
     });
-    $('#container').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: '新闻分类数据量汇总'
-        },
-        subtitle: {
-            text: 'Source: Mysql'
-        },
-        xAxis: {
-            categories: [
-                '一月',
-                '二月',
-                '三月',
-                '四月',
-                '五月',
-                '六月',
-                '七月',
-                '八月',
-                '九月',
-                '十月',
-                '十一月',
-                '十二月'
-            ]
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: '数据总数 (条)'
-            }
-        },
-        tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y:.1f} 条</b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [{
-            name: '微博',
-            data: [0,0,0,3,32,0,0,0,0,0,0,0]
-
-        }, {
-            name: '学院官网',
-            data: [1,4,0,8,15,0,0,0,0,0,0,0]
-
-        }, {
-            name: '本地编辑上传',
-            data: [10,0,0,3,22,0,0,0,0,0,0,0]
-
-        }, {
-            name: '本地官网',
-            data: [13,0,34,3,10,0,0,0,0,0,0,0]
-
-        }]
-    });
-});				
+    
+});
+ function load(result){
+	 $('#container').highcharts({
+	        chart: {
+	            type: 'column'
+	        },
+	        title: {
+	            text: '新闻分类数据量汇总'
+	        },
+	        subtitle: {
+	            text: 'Source: Mysql'
+	        },
+	        xAxis: {
+	            categories: [
+	                '一月',
+	                '二月',
+	                '三月',
+	                '四月',
+	                '五月',
+	                '六月',
+	                '七月',
+	                '八月',
+	                '九月',
+	                '十月',
+	                '十一月',
+	                '十二月'
+	            ]
+	        },
+	        yAxis: {
+	            min: 0,
+	            title: {
+	                text: '数据总数 (条)'
+	            }
+	        },
+	        tooltip: {
+	            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+	            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+	                '<td style="padding:0"><b>{point.y:.1f} 条</b></td></tr>',
+	            footerFormat: '</table>',
+	            shared: true,
+	            useHTML: true
+	        },
+	        plotOptions: {
+	            column: {
+	                pointPadding: 0.2,
+	                borderWidth: 0
+	            }
+	        },
+	        series: result
+	    });
+ }
 </script>
 </body>
 </html>

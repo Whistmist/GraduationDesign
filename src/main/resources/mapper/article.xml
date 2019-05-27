@@ -13,8 +13,9 @@
              #{item}
         </foreach>
 	</select>
-	<select id="queryStatistical" parameterType="String" resultType="statistical">
-		select time as year,concat_ws(",",a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) as time from (
+	<select id="queryStatistical" parameterType="String" resultType="String">
+		<!-- select time as year,concat_ws(",",a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) as time from ( -->
+		select concat_ws(",",a1,a2,a3,a4,a5,a6,a7,a8,a9,a10,a11,a12) as time from (
 			SELECT YEAR(time) as time,
 			SUM(CASE WHEN MONTH(time) =1 THEN 1 ELSE 0 END) as "a1",   
 			SUM(CASE WHEN MONTH(time) =2 THEN 1 ELSE 0 END) as "a2",

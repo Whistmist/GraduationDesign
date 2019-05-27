@@ -14,6 +14,6 @@ public interface ArticleDao {
 
 	List<String> queryArticleIds(List<String> ids);
 
-	List<Statistical> queryStatistical(String year);
+	String queryStatistical(String year);
 	
 }
